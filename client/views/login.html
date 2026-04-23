@@ -1,0 +1,32 @@
+<!-- Login View -->
+<div class="container">
+  <div class="card form-card animate-in" style="margin-top: 40px;">
+    <h2>Welcome Back</h2>
+    <p class="form-subtitle">Log in to your account to start writing</p>
+
+    <div class="alert alert-error" ng-show="error">⚠ {{ error }}</div>
+
+    <form ng-submit="login()" id="login-form">
+      <div class="form-group">
+        <label class="form-label" for="login-email">Email</label>
+        <input type="email" class="form-control" id="login-email"
+               ng-model="loginData.email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="login-password">Password</label>
+        <input type="password" class="form-control" id="login-password"
+               ng-model="loginData.password" placeholder="Enter your password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" id="login-submit"
+              style="width: 100%;" ng-disabled="loading">
+        {{ loading ? 'Logging in...' : 'Log In' }}
+      </button>
+    </form>
+
+    <p style="text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 0.9rem;">
+      Don't have an account? <a href="#!/register">Sign up</a>
+    </p>
+  </div>
+</div>

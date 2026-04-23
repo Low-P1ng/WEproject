@@ -1,0 +1,74 @@
+<!-- Dashboard View -->
+<div class="container">
+  <div class="animate-in">
+    <div class="dashboard-header">
+      <div>
+        <h2>Dashboard</h2>
+        <p style="color: var(--text-muted); margin-top: 4px;">Welcome back, {{ getUser().username }}!</p>
+      </div>
+      <a href="#!/create" class="btn btn-primary" id="dashboard-create-btn">+ New Post</a>
+    </div>
+
+    <!-- Stats -->
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-number">{{ myPosts.length }}</div>
+        <div class="stat-label">Total Posts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ myPosts.length > 0 ? myPosts[0].category : '—' }}</div>
+        <div class="stat-label">Latest Category</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ getUser().username }}</div>
+        <div class="stat-label">Author</div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="alert alert-success" ng-show="success">✅ {{ success }}</div>
+    <div class="alert alert-error" ng-show="error">⚠ {{ error }}</div>
+
+    <!-- Loading -->
+    <div class="loading" ng-show="loading"><div class="spinner"></div></div>
+
+    <!-- Posts Table -->
+    <div class="table-wrapper" ng-hide="loading" ng-show="myPosts.length > 0">
+      <table class="table" id="posts-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="post in myPosts" id="post-row-{{ $index }}">
+            <td>
+              <a href="#!/posts/{{ post._id }}" class="table-title" style="color: var(--text-primary);">
+                {{ post.title }}
+              </a>
+            </td>
+            <td><span class="tag">{{ post.category }}</span></td>
+            <td>{{ formatDate(post.createdAt) }}</td>
+            <td>
+              <div class="table-actions">
+                <a href="#!/edit/{{ post._id }}" class="btn btn-secondary btn-sm">Edit</a>
+                <button class="btn btn-danger btn-sm" ng-click="deletePost(post._id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" ng-show="!loading && myPosts.length === 0">
+      <div class="empty-state-icon">✍️</div>
+      <h3>No posts yet</h3>
+      <p>Create your first blog post and share it with the world!</p>
+      <a href="#!/create" class="btn btn-primary">Write Your First Post</a>
+    </div>
+  </div>
+</div>

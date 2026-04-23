@@ -1,0 +1,60 @@
+<!-- Edit Post View -->
+<div class="container">
+  <!-- Loading -->
+  <div class="loading" ng-show="loading"><div class="spinner"></div></div>
+
+  <div class="animate-in" style="max-width: 800px; margin: 0 auto;" ng-hide="loading">
+    <a href="#!/dashboard" class="back-link">← Back to Dashboard</a>
+
+    <div class="card" style="padding: 40px;">
+      <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 8px;">Edit Post</h2>
+      <p style="color: var(--text-muted); margin-bottom: 32px;">Update your blog post</p>
+
+      <div class="alert alert-error" ng-show="error">⚠ {{ error }}</div>
+
+      <form ng-submit="updatePost()" id="edit-post-form">
+        <div class="form-group">
+          <label class="form-label" for="edit-title">Title</label>
+          <input type="text" class="form-control" id="edit-title"
+                 ng-model="postForm.title" placeholder="Enter a compelling title..." required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="form-group">
+            <label class="form-label" for="edit-category">Category</label>
+            <select class="form-control" id="edit-category" ng-model="postForm.category">
+              <option ng-repeat="cat in categories" value="{{ cat }}">{{ cat }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-tags">Tags (comma-separated)</label>
+            <input type="text" class="form-control" id="edit-tags"
+                   ng-model="postForm.tags" placeholder="e.g. javascript, web, tutorial">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="edit-excerpt">Excerpt (optional)</label>
+          <textarea class="form-control" id="edit-excerpt"
+                    ng-model="postForm.excerpt" placeholder="A brief summary of your post..."
+                    style="min-height: 80px;"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="edit-content">Content</label>
+          <textarea class="form-control" id="edit-content"
+                    ng-model="postForm.content" placeholder="Write your blog post content here..."
+                    style="min-height: 300px;" required></textarea>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary btn-lg" ng-disabled="saving" id="edit-submit">
+            {{ saving ? 'Saving...' : '💾 Save Changes' }}
+          </button>
+          <a href="#!/dashboard" class="btn btn-secondary btn-lg">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

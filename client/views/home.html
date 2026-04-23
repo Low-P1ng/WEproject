@@ -1,0 +1,81 @@
+<!-- Home View — Blog post listing with hero, search, and category filter -->
+<div class="container">
+  <!-- Hero Section -->
+  <section class="hero animate-in">
+    <h1>Discover Stories That <span class="gradient-text">Inspire</span></h1>
+    <p>Explore ideas, insights, and stories from writers around the world. From technology to travel, find your next great read.</p>
+
+    <!-- Search Bar -->
+    <div style="max-width: 500px; margin: 0 auto;">
+      <div style="position: relative;">
+        <input type="text"
+               class="form-control"
+               ng-model="searchQuery"
+               ng-keyup="$event.keyCode === 13 && searchPosts()"
+               placeholder="Search posts..."
+               id="search-input"
+               style="padding-right: 60px;">
+        <button class="btn btn-primary btn-sm"
+                ng-click="searchPosts()"
+                id="search-btn"
+                style="position: absolute; right: 6px; top: 50%; transform: translateY(-50%); padding: 8px 16px;">
+          Search
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter Bar -->
+  <div class="category-bar animate-in animate-delay-1">
+    <span class="category-badge"
+          ng-repeat="cat in categories"
+          ng-class="{ active: selectedCategory === cat }"
+          ng-click="filterByCategory(cat)"
+          id="cat-{{cat}}">
+      {{ cat }}
+    </span>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading" ng-show="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Error State -->
+  <div class="alert alert-error" ng-show="error" id="home-error">
+    ⚠ {{ error }}
+  </div>
+
+  <!-- Posts Grid -->
+  <div class="post-grid" ng-hide="loading">
+    <div class="card animate-in"
+         ng-repeat="post in posts"
+         ng-style="{ 'animation-delay': ($index * 0.08) + 's' }"
+         id="post-card-{{ $index }}">
+      <div class="tag-group" ng-show="post.category">
+        <span class="tag">{{ post.category }}</span>
+      </div>
+      <h3 class="card-title">
+        <a href="#!/posts/{{ post._id }}">{{ post.title }}</a>
+      </h3>
+      <p class="card-excerpt">{{ post.excerpt || post.content | truncate:180 }}</p>
+      <div class="card-meta">
+        <div class="card-meta-item" ng-show="post.author">
+          <span class="avatar avatar-sm">{{ getInitial(post.author.username) }}</span>
+          <span>{{ post.author.username }}</span>
+        </div>
+        <div class="card-meta-item">
+          <span>📅</span>
+          <span>{{ formatDate(post.createdAt) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" ng-show="!loading && posts.length === 0">
+    <div class="empty-state-icon">📝</div>
+    <h3>No posts found</h3>
+    <p>Try a different search or category filter.</p>
+  </div>
+</div>
