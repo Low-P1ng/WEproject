@@ -7,7 +7,7 @@
       <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 8px;">Create New Post</h2>
       <p style="color: var(--text-muted); margin-bottom: 32px;">Share your thoughts with the world</p>
 
-      <div class="alert alert-error" ng-show="error">⚠ {{ error }}</div>
+      <div class="alert alert-error" ng-show="error">{{ error }}</div>
 
       <form ng-submit="createPost()" id="create-post-form">
         <div class="form-group">
@@ -47,7 +47,7 @@
 
         <div class="btn-group">
           <button type="submit" class="btn btn-primary btn-lg" ng-disabled="saving" id="create-submit">
-            {{ saving ? 'Publishing...' : '🚀 Publish Post' }}
+            {{ saving ? 'Publishing...' : 'Publish' }}
           </button>
           <a href="#!/dashboard" class="btn btn-secondary btn-lg">Cancel</a>
         </div>

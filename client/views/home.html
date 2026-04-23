@@ -43,7 +43,7 @@
 
   <!-- Error State -->
   <div class="alert alert-error" ng-show="error" id="home-error">
-    ⚠ {{ error }}
+    {{ error }}
   </div>
 
   <!-- Posts Grid -->
@@ -65,7 +65,7 @@
           <span>{{ post.author.username }}</span>
         </div>
         <div class="card-meta-item">
-          <span>📅</span>
+          <span>·</span>
           <span>{{ formatDate(post.createdAt) }}</span>
         </div>
       </div>
@@ -74,7 +74,7 @@
 
   <!-- Empty State -->
   <div class="empty-state" ng-show="!loading && posts.length === 0">
-    <div class="empty-state-icon">📝</div>
+    <div class="empty-state-icon">—</div>
     <h3>No posts found</h3>
     <p>Try a different search or category filter.</p>
   </div>
