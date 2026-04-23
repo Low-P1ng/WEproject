@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DailyTea — Project Report</title>
 <link rel="stylesheet" href="report-style.css">
+<!-- Mermaid JS for Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ 
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#f8fafc',
+      primaryTextColor: '#1a1a1a',
+      primaryBorderColor: '#1e3a8a',
+      lineColor: '#1e3a8a',
+      secondaryColor: '#e2e8f0',
+      tertiaryColor: '#ffffff'
+    }
+  });
+</script>
 </head>
 <body>
 <div class="report">
@@ -112,6 +128,55 @@
 <tr><td><code>#!/create</code></td><td>create-post.html</td><td>DashboardController</td><td>Yes</td><td>Create new post</td></tr>
 <tr><td><code>#!/edit/:id</code></td><td>edit-post.html</td><td>DashboardController</td><td>Yes</td><td>Edit existing post</td></tr>
 </tbody></table></div>
+</div>
+
+<div class="card">
+<div class="card-title"><span class="icon blue">🔄</span> User Authentication Workflow</div>
+<div class="workflow-diagram">
+<div class="mermaid">
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant API
+    participant Database
+
+    User->>Frontend: Enters Email & Password
+    Frontend->>API: POST /api/auth/login
+    API->>Database: Query User by Email
+    Database-->>API: Return User Record (if exists)
+    API->>API: Compare Hashed Password
+    alt Valid Credentials
+        API->>API: Generate JWT Token
+        API-->>Frontend: Return { token, user }
+        Frontend->>Frontend: Store Token in LocalStorage
+        Frontend-->>User: Redirect to Dashboard
+    else Invalid Credentials
+        API-->>Frontend: 401 Unauthorized
+        Frontend-->>User: Display Error Message
+    end
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-title"><span class="icon green">✍️</span> Content Creation Workflow</div>
+<div class="workflow-diagram">
+<div class="mermaid">
+flowchart TD
+    A[User clicks New Post] --> B{Is Authenticated?}
+    B -- No --> C[Redirect to Login]
+    B -- Yes --> D[Show Create Post Form]
+    D --> E[User fills form & clicks Submit]
+    E --> F[Frontend attaches JWT to headers]
+    F --> G[POST /api/posts]
+    G --> H{API validates token}
+    H -- Invalid --> I[Return 401 Unauthorized]
+    H -- Valid --> J[Validate Post Data]
+    J --> K[Save to Database]
+    K --> L[Return Success & Post ID]
+    L --> M[Frontend redirects to Post Detail]
+</div>
+</div>
 </div>
 
 <div class="card">

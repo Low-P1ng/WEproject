@@ -8,7 +8,13 @@
     "dev": "node server/server.js",
     "seed": "node server/seed.js"
   },
-  "keywords": ["blog", "mean-stack", "angularjs", "express", "mongodb"],
+  "keywords": [
+    "blog",
+    "mean-stack",
+    "angularjs",
+    "express",
+    "mongodb"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -17,6 +23,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.5"
+    "mongoose": "^8.9.5",
+    "puppeteer": "^24.42.0"
   }
 }
