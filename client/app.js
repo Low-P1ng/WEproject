@@ -1,5 +1,5 @@
 /**
- * BlogVerse — AngularJS Application Module
+ * DailyTea — AngularJS Application Module
  * Configures routing, HTTP interceptor for JWT, and root scope helpers.
  */
 var app = angular.module('blogApp', ['ngRoute', 'ngSanitize']);

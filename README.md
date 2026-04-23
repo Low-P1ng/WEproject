@@ -1,4 +1,4 @@
-# BlogVerse — MEAN Stack Blog Application
+# DailyTea — MEAN Stack Blog Application
 
 A full-stack blog website built with **AngularJS 1.8**, **Node.js**, **Express.js**, and **MongoDB Atlas**.
 

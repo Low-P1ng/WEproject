@@ -1,4 +1,4 @@
-# BlogVerse — Blog Website Project Report
+# DailyTea — Blog Website Project Report
 
 **Subject:** Web Engineering  
 **Technology Stack:** AngularJS 1.8 · Node.js · Express.js · MongoDB Atlas  
@@ -46,7 +46,7 @@ graph LR
 
 ### Architecture Description
 
-The BlogVerse application follows a **three-tier client-server architecture** with clear separation of concerns:
+The DailyTea application follows a **three-tier client-server architecture** with clear separation of concerns:
 
 | Layer | Technology | Role |
 |-------|-----------|------|
@@ -102,7 +102,7 @@ The BlogVerse application follows a **three-tier client-server architecture** wi
 
 ```mermaid
 flowchart TD
-    Start(["User visits BlogVerse"]) --> Browse["Browse Posts (Home)"]
+    Start(["User visits DailyTea"]) --> Browse["Browse Posts (Home)"]
     Browse --> Search["Search / Filter by Category"]
     Search --> Browse
     Browse --> ViewPost["Read Full Post"]
@@ -309,7 +309,7 @@ Full post view with formatted content (headers, lists, paragraphs), comment sect
 ## 7. Conclusion
 
 ### Summary
-BlogVerse is a complete, full-stack blog application that demonstrates core Web Engineering principles using the MEAN stack. The system provides a fully functional platform where users can register, authenticate, create and manage blog posts, browse content by category or search, and engage through comments.
+DailyTea is a complete, full-stack blog application that demonstrates core Web Engineering principles using the MEAN stack. The system provides a fully functional platform where users can register, authenticate, create and manage blog posts, browse content by category or search, and engage through comments.
 
 ### Key Achievements
 
